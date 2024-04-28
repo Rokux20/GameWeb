@@ -3,16 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameWeb.Models
 {
-    public class Tasks
+    public class Crops
     {
         [Key]
-        public int TaskId { get; set; }
+        public int CropId { get; set; }
 
         [Required]
-        public string Description { get; set; }
-
-        [Required]
-        public bool Finished { get; set; }
+        public string CropName { get; set; }
 
         [ForeignKey("FarmId")]
         public int FarmId { get; set; }
