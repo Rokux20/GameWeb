@@ -15,5 +15,7 @@ namespace GameWeb.Context
         public DbSet<Crops> Crops { get; set; }
         public DbSet<DevicesTypeEnergy> DevicesTypeEnergy { get; set; }
         public DbSet<TypeEnergy> TypeEnergy { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Game> Game { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace GameWeb.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FarmId { get; set; }
         public string? FarmName { get; set; }
+
     }
 }
