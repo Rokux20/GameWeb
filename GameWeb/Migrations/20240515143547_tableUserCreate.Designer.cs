@@ -4,6 +4,7 @@ using GameWeb.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameWeb.Migrations
 {
     [DbContext(typeof(FarmDbContext))]
-    partial class FarmDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240515143547_tableUserCreate")]
+    partial class tableUserCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,29 +99,6 @@ namespace GameWeb.Migrations
                     b.HasKey("FarmId");
 
                     b.ToTable("Farms");
-                });
-
-            modelBuilder.Entity("GameWeb.Models.Game", b =>
-                {
-                    b.Property<int>("GameId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GameId"));
-
-                    b.Property<int>("FarmId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Partida")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GameId");
-
-                    b.ToTable("Game");
                 });
 
             modelBuilder.Entity("GameWeb.Models.Tasks", b =>

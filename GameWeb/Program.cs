@@ -9,6 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 var ConnectionString = builder.Configuration.GetConnectionString("Connection");
 builder.Services.AddDbContext<FarmDbContext>(options => options.UseSqlServer(ConnectionString));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+               policy => {
+                   policy.AllowAnyOrigin();
+                   policy.AllowAnyHeader();
+               });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -22,6 +30,8 @@ builder.Services.AddScoped<IDevicesTypeEnergyRepository, DevicesTypeEnergyReposi
 builder.Services.AddScoped<IDevicesRepository, DevicesRepository>();
 builder.Services.AddScoped<ITasksRepository, TasksRepository>();
 builder.Services.AddScoped<ICropsRepository, CropsRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IGameRepository, GameRepository>();
 #endregion
 
 
@@ -32,6 +42,8 @@ builder.Services.AddScoped<IDevicesTypeEnergyService, DevicesTypeEnergyService>(
 builder.Services.AddScoped<IDevicesService, DevicesService>();
 builder.Services.AddScoped<ITasksService, TasksService>();
 builder.Services.AddScoped<ICropsService, CropsService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IGameService, GameService>();
 #endregion
 
 
@@ -50,3 +62,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
