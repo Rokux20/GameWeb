@@ -11,6 +11,7 @@ namespace GameWeb.Repositories
         Task<User> AddUser(string Usuario, string Password);
         Task<User> UpdateUser(User user);
         Task<User> DeleteUser(int id);
+        Task<User> Authenticate(string username, string password);
 
     }
     public class UserRepository : IUserRepository
@@ -20,6 +21,18 @@ namespace GameWeb.Repositories
         public UserRepository(FarmDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<User> Authenticate(string username, string password)
+        {
+            var user = await _context.User.SingleOrDefaultAsync(x => x.Usuario == username);
+
+            
+            if (user == null || user.Password != password)
+                return null;
+
+            
+            return user;
         }
 
         public async Task<List<User>> GetUsers()

@@ -17,6 +17,19 @@ namespace GameWeb.Controllers
             _userService = userService;
         }
 
+        [HttpPost("authenticate")]
+        public async Task<ActionResult<User>> Authenticate([FromBody] User user)
+        {
+            var authenticatedUser = await _userService.Authenticate(user.Usuario, user.Password);
+
+            if (authenticatedUser == null)
+            {
+                return BadRequest(new { message = "Nombre de usuario o contraseña incorrectos" });
+            }
+
+            return Ok(authenticatedUser);
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<User>>> GetUsers()
         {
