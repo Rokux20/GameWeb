@@ -38,7 +38,7 @@ namespace GameWeb.Migrations
 
                     b.HasKey("CropId");
 
-                    b.ToTable("Crops");
+                    b.ToTable("Crops", (string)null);
                 });
 
             modelBuilder.Entity("GameWeb.Models.Devices", b =>
@@ -60,7 +60,7 @@ namespace GameWeb.Migrations
 
                     b.HasKey("DeviceId");
 
-                    b.ToTable("Devices");
+                    b.ToTable("Devices", (string)null);
                 });
 
             modelBuilder.Entity("GameWeb.Models.DevicesTypeEnergy", b =>
@@ -79,7 +79,7 @@ namespace GameWeb.Migrations
 
                     b.HasKey("DevicesEnergyId");
 
-                    b.ToTable("DevicesTypeEnergy");
+                    b.ToTable("DevicesTypeEnergy", (string)null);
                 });
 
             modelBuilder.Entity("GameWeb.Models.Farms", b =>
@@ -95,7 +95,7 @@ namespace GameWeb.Migrations
 
                     b.HasKey("FarmId");
 
-                    b.ToTable("Farms");
+                    b.ToTable("Farms", (string)null);
                 });
 
             modelBuilder.Entity("GameWeb.Models.Game", b =>
@@ -118,7 +118,7 @@ namespace GameWeb.Migrations
 
                     b.HasKey("GameId");
 
-                    b.ToTable("Game");
+                    b.ToTable("Game", (string)null);
                 });
 
             modelBuilder.Entity("GameWeb.Models.Tasks", b =>
@@ -140,7 +140,7 @@ namespace GameWeb.Migrations
 
                     b.HasKey("TaskId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Tasks", (string)null);
                 });
 
             modelBuilder.Entity("GameWeb.Models.TypeEnergy", b =>
@@ -156,7 +156,7 @@ namespace GameWeb.Migrations
 
                     b.HasKey("TypeEnergyId");
 
-                    b.ToTable("TypeEnergy");
+                    b.ToTable("TypeEnergy", (string)null);
                 });
 
             modelBuilder.Entity("GameWeb.Models.User", b =>
@@ -177,7 +177,7 @@ namespace GameWeb.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 #pragma warning restore 612, 618
         }
