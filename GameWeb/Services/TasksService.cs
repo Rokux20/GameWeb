@@ -7,8 +7,8 @@ namespace GameWeb.Services
     {
         Task<List<Tasks>> GetTasks();
         Task<Tasks> GetTaskId(int id);
-        Task<Tasks> AddTask(string Description, int FarmId);
-        Task<Tasks> UpdateTask(int TaskId, string? Description = null, int? FarmId = null);
+        Task<Tasks> AddTask(string Description, int FarmId, bool Finished = false);
+        Task<Tasks> UpdateTask(int TaskId, string? Description = null, int? FarmId = null, bool Finished = false);
         Task<Tasks> DeleteTask(int id);
     }
     public class TasksService : ITasksService
@@ -30,12 +30,12 @@ namespace GameWeb.Services
             return await _tasksRepository.GetTaskId(id);
         }
 
-        public async Task<Tasks> AddTask(string Description, int FarmId)
+        public async Task<Tasks> AddTask(string Description, int FarmId, bool Finished)
         {
-            return await _tasksRepository.AddTask(Description, FarmId);
+            return await _tasksRepository.AddTask(Description, FarmId, Finished);
         }
 
-        public async Task<Tasks> UpdateTask(int TaskId, string? Description = null, int? FarmId = null)
+        public async Task<Tasks> UpdateTask(int TaskId, string? Description = null, int? FarmId = null, bool Finished = false)
         {
             var task = await _tasksRepository.GetTaskId(TaskId);
             if (task == null)
@@ -52,6 +52,7 @@ namespace GameWeb.Services
             {
                 task.FarmId = (int)FarmId;
             }
+            task.Finished = Finished;
 
             return await _tasksRepository.UpdateTask(task);
         }

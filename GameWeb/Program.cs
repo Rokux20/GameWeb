@@ -15,6 +15,8 @@ builder.Services.AddCors(options =>
                policy => {
                    policy.AllowAnyOrigin();
                    policy.AllowAnyHeader();
+                   policy.AllowAnyMethod();
+                   policy.WithMethods("DELETE");
                });
 });
 
@@ -50,12 +52,21 @@ builder.Services.AddScoped<IGameService, GameService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+// Aplicar la política CORS
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 

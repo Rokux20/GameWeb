@@ -8,7 +8,7 @@ namespace GameWeb.Repositories
     {
         Task<List<Tasks>>GetTasks();
         Task<Tasks> GetTaskId(int id);
-        Task<Tasks> AddTask(string Description, int Farmid);
+        Task<Tasks> AddTask(string Description, int Farmid, bool Finished);
         Task<Tasks> UpdateTask(Tasks task);
         Task<Tasks> DeleteTask(int id);
     }
@@ -31,12 +31,13 @@ namespace GameWeb.Repositories
             return await _context.Tasks.FindAsync(id);
         }
 
-        public async Task<Tasks> AddTask(string Description, int Farmid)
+        public async Task<Tasks> AddTask(string Description, int Farmid, bool Finished)
         {
             var task = new Tasks
             {
                 Description = Description,
-                FarmId = Farmid
+                FarmId = Farmid,
+                Finished = Finished 
             };
 
             await _context.Tasks.AddAsync(task);
