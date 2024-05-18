@@ -37,7 +37,7 @@ namespace GameWeb.Controllers
         [HttpPost]
         public async Task<ActionResult<Tasks>> AddTask([FromBody] Tasks task)
         {
-            return Ok(await _tasksService.AddTask(task.Description, task.FarmId));
+            return Ok(await _tasksService.AddTask(task.Description, task.FarmId, task.Finished ?? false));
         }
 
         [HttpPut("{id}")]
@@ -45,7 +45,7 @@ namespace GameWeb.Controllers
         {
             try
             {
-                return Ok(await _tasksService.UpdateTask(id, task.Description, task.FarmId));
+                return Ok(await _tasksService.UpdateTask(id, task.Description, task.FarmId, task.Finished ?? false));
             }
             catch (Exception ex)
             {
