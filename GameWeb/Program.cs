@@ -17,6 +17,7 @@ builder.Services.AddCors(options =>
                    policy.AllowAnyHeader();
                    policy.AllowAnyMethod();
                    policy.WithMethods("DELETE");
+                   policy.WithExposedHeaders("Content-Disposition");
                });
 });
 
