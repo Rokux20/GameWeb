@@ -12,6 +12,7 @@ namespace GameWeb.Repositories
         Task<User> UpdateUser(User user);
         Task<User> DeleteUser(int id);
         Task<User> Authenticate(string username, string password);
+        Task<User> Register(string username, string password);
 
     }
     public class UserRepository : IUserRepository
@@ -22,6 +23,24 @@ namespace GameWeb.Repositories
         {
             _context = context;
         }
+
+        public async Task<User> Register(string username, string password)
+        {
+            // Verifica si el nombre de usuario ya está en uso
+            if (await _context.User.AnyAsync(x => x.Usuario == username))
+                return null;
+
+            var user = new User
+            {
+                Usuario = username,
+                Password = password
+            };
+
+            await _context.User.AddAsync(user);
+            await _context.SaveChangesAsync();
+            return user;
+        }
+
 
         public async Task<User> Authenticate(string username, string password)
         {

@@ -30,6 +30,19 @@ namespace GameWeb.Controllers
             return Ok(authenticatedUser);
         }
 
+        [HttpPost("register")]
+        public async Task<ActionResult<User>> Register([FromBody] User user)
+        {
+            var authenticatedUser = await _userService.Register(user.Usuario, user.Password);
+
+            if (user == null)
+            {
+                return BadRequest(new { message = "El nombre de usuario ya está en uso" });
+            }
+
+            return Ok(user);
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<User>>> GetUsers()
         {

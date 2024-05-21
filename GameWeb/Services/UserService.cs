@@ -11,6 +11,7 @@ namespace GameWeb.Services
         Task<User> UpdateUser(int UserId, string? Usuario = null, string? Password= null);
         Task<User> DeleteUser(int id);
         Task<User> Authenticate(string username, string password);
+        Task<User> Register(string username, string password);
 
     }
     public class UserService: IUserService
@@ -65,6 +66,11 @@ namespace GameWeb.Services
         public async Task<User> Authenticate(string username, string password)
         {
             return await _userRepository.Authenticate(username, password);
+        }
+
+        public async Task<User> Register(string username, string password)
+        {
+            return await _userRepository.Register(username, password);
         }
     }
 }
